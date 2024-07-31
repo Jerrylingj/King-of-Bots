@@ -1,0 +1,53 @@
+{
+  "name": "King_of_Bots",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@vue/cli": "^5.0.8",
+    "ace-builds": "^1.35.4",
+    "bootstrap": "^5.3.3",
+    "core-js": "^3.6.5",
+    "jquery": "^3.7.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "vue": "^3.4.34",
+    "vue-router": "^4.4.0",
+    "vue3-ace-editor": "^2.2.4",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.19",
+    "@vue/cli-plugin-eslint": "~4.5.19",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~4.5.19",
+    "@vue/compiler-sfc": "^3.4.34",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
