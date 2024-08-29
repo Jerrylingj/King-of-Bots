@@ -4,7 +4,7 @@
         <div class="card-body">
           <slot>
             <div class="card1 introduction">
-              <h3>前言：</h3>
+              <h3>前言</h3>
                 <p>确切地说，这并不是贪吃蛇。<br>
                   King of Bots为<strong>双人对战的回合制游戏</strong>(●ˇ∀ˇ●)<br>
                   欢迎各位大佬贡献自己的Bot代码，祝各位游戏愉快~ o(*￣▽￣*)ブ
@@ -12,7 +12,7 @@
             </div>
 
             <div class="card1 rule">
-              <h3>游戏规则：</h3>
+              <h3>游戏规则</h3>
               <ul>
                 <li>玩家可以选择亲自出马或者提交Bot代码（目前仅支持Java）来操纵自己的蛇，成功进入对局后在<span style="color:red;font-weight: 550;">对战界面的左下角</span>会显示己方蛇的颜色。</li>
                 <li>每一回合，双方通过交互给出一条Bot的移动指令，<span style="color:red;font-weight: 550;">最多等待5秒</span>，接收到双方指令后，Bot移动一步</li>
@@ -28,7 +28,7 @@
               </ul>
             </div>
             <div class="card1 guidence">
-              <h3>指引：</h3>
+              <h3>指引</h3>
               ps:由于制作的非常简陋，当前版本可能还存在许多bug，蹲蹲后续的反馈，后面可能会进行更新维护
               <ul>
                 <li>
