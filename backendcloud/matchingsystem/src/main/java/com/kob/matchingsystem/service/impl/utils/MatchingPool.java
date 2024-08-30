@@ -81,6 +81,13 @@ public class MatchingPool extends Thread {
                     break;
                 }
             }
+
+            // 对于匹配时间超过5秒的玩家,直接匹配系统人机
+            if(!used[i] && players.get(i).getWaitingTime() >= 5) {
+                used[i] = true;
+                Player a = players.get(i), b = new Player(-1 * players.get(i).getUserId(), 1500, -2, 0);
+                sendResult(a, b);
+            }
         }
 
         List<Player> newPlayers = new ArrayList<>();

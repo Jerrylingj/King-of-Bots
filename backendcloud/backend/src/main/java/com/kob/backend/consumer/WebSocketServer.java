@@ -97,9 +97,17 @@ public class WebSocketServer {
     //  把匹配逻辑封装成一个函数
     public static void startGame(Integer aId, Integer aBotId, Integer bId, Integer bBotId) {
         User a = userMapper.selectById(aId);
-        User b = userMapper.selectById(bId);
         Bot botA = botMapper.selectById(aBotId);
-        Bot botB = botMapper.selectById(bBotId);
+
+        User b;
+        Bot botB;
+        if (bId > 0 && bBotId != -2) {
+            b = userMapper.selectById(bId);
+            botB = botMapper.selectById(bBotId);
+        } else {
+            b = null;
+            botB = null;
+        }
 
         Game game = new Game(
                 13,
@@ -107,7 +115,7 @@ public class WebSocketServer {
                 20,
                 a.getId(),
                 botA,
-                b.getId(),
+                bId,
                 botB
         );
         game.createMap();
@@ -116,7 +124,8 @@ public class WebSocketServer {
         if (users.get(a.getId()) != null) {
             users.get(a.getId()).game = game;
         }
-        if (users.get(b.getId()) != null) {
+        // 只有当B不是人机时才同步
+        if (bId > 0 && users.get(b.getId()) != null) {
             users.get(b.getId()).game = game;
         }
         game.start();   //  开始一个线程
@@ -134,8 +143,15 @@ public class WebSocketServer {
         //  a和b配对,把信息传给a,b
         JSONObject respA = new JSONObject();
         respA.put("event", "start-matching");
-        respA.put("opponent_username",b.getUsername());
-        respA.put("opponent_photo",b.getPhoto());
+        if (bId > 0) {
+            // 不是人机
+            respA.put("opponent_username",b.getUsername());
+            respA.put("opponent_photo",b.getPhoto());
+        } else {
+            // 是人机
+            respA.put("opponent_username","小蛇蛇");
+            respA.put("opponent_photo","https://cdn.acwing.com/media/article/image/2022/07/07/1_d7f3b93efd-kob.png");
+        }
         respA.put("game",respGame);
         //  向前端发送用户a的信息
         if(users.get(a.getId()) != null) {
@@ -148,7 +164,7 @@ public class WebSocketServer {
         respB.put("opponent_photo",a.getPhoto());
         respB.put("game",respGame);
         //  向前端发送用户b的信息
-        if (users.get(b.getId()) != null) {
+        if (bId > 0 && users.get(b.getId()) != null) {
             users.get(b.getId()).sendMessage(respB.toJSONString());
         }
     }

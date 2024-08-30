@@ -9,10 +9,7 @@ import lombok.Getter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static com.kob.backend.consumer.WebSocketServer.users;
@@ -71,6 +68,125 @@ public class Game extends Thread {
         if ( botB != null) {
             botIdB = botB.getId();
             botCodeB = botB.getContent();
+        } else {
+            botIdB = -2;
+             botCodeB = "package com.kob.botrunningsystem.utils;\n" +
+                     "\n" +
+                     "import java.io.File;\n" +
+                     "import java.io.FileNotFoundException;\n" +
+                     "import java.util.ArrayList;\n" +
+                     "import java.util.List;\n" +
+                     "import java.util.Random;\n" +
+                     "import java.util.Scanner;\n" +
+                     "\n" +
+                     "public class Bot implements java.util.function.Supplier<Integer> {\n" +
+                     "    static class Cell {\n" +
+                     "        public int x, y;\n" +
+                     "        public Cell(int x, int y) {\n" +
+                     "            this.x = x;\n" +
+                     "            this.y = y;\n" +
+                     "        }\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    //  检验蛇身是否变长\n" +
+                     "    private boolean check_tail_increasing(int step) {\n" +
+                     "        if (step <= 10) return true;\n" +
+                     "        return step % 3 == 1;\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    //  拿取蛇身→从头开始一步步走，利用之前存的steps数组\n" +
+                     "    public List<Cell> getCells(int sx, int sy, String steps) {\n" +
+                     "        System.out.println(\"steps: \" + steps);\n" +
+                     "        steps = steps.substring(1, steps.length() - 1); // 去掉括号\n" +
+                     "        List<Cell> res = new ArrayList<>();\n" +
+                     "\n" +
+                     "        int[] dx = {-1, 0, 1, 0},dy = {0, 1, 0, -1};\n" +
+                     "\n" +
+                     "        int x = sx,y = sy;\n" +
+                     "\n" +
+                     "        int step = 0; // 记录步数\n" +
+                     "        res.add(new Cell(x, y));\n" +
+                     "        //  模拟出之前的每一步\n" +
+                     "        for  (int i = 0; i < steps.length(); i++) {\n" +
+                     "            int d = steps.charAt(i) - '0'; //   转化为整数\n" +
+                     "            x += dx[d];\n" +
+                     "            y += dy[d];\n" +
+                     "            res.add(new Cell(x, y));\n" +
+                     "            if (!check_tail_increasing(++step)) {\n" +
+                     "                //  蛇尾不增加,删除蛇尾\n" +
+                     "                res.remove(0);\n" +
+                     "            }\n" +
+                     "        }\n" +
+                     "\n" +
+                     "        return res;\n" +
+                     "    }\n" +
+                     "\n" +
+                     "\n" +
+                     "    public Integer nextMove(String input) {\n" +
+                     "        //  0:上 1:右 2:下 3:左\n" +
+                     "        String[] strs = input.split(\"#\");\n" +
+                     "        int[][] g = new int[13][14];\n" +
+                     "        for (int i = 0, k = 0; i < 13; i++) {\n" +
+                     "            for (int j = 0; j < 14; j++, k++) {\n" +
+                     "                if (strs[0].charAt(k) == '1') {\n" +
+                     "                    g[i][j] = 1;\n" +
+                     "                }\n" +
+                     "            }\n" +
+                     "        }\n" +
+                     "\n" +
+                     "        int aSx = Integer.parseInt(strs[1]);\n" +
+                     "        int aSy = Integer.parseInt(strs[2]);\n" +
+                     "        int bSx = Integer.parseInt(strs[4]);\n" +
+                     "        int bSy = Integer.parseInt(strs[5]);\n" +
+                     "        System.out.println(\"aSx: \" + aSx);" +
+                     "        System.out.println(\"aSy: \" + aSy);" +
+                     "\n" +
+                     "        List<Cell> aCells = getCells(aSx, aSy, strs[3]);\n" +
+                     "        List<Cell> bCells = getCells(bSx, bSy, strs[6]);\n" +
+                     "\n" +
+                     "        for (Cell cell : aCells)  g[cell.x][cell.y] = 1;\n" +
+                     "        for (Cell cell : bCells)  g[cell.x][cell.y] = 1;\n" +
+                     "\n" +
+                     "        int[] dx = {-1, 0, 1, 0},dy = {0, 1, 0, -1};\n" +
+                     "\n" +
+                     "        //  版本4：版本3+随机数优化版\n" +
+                     "        Random random = new Random();\n" +
+                     "        for(int i = 0; i < 20; i ++) {\n" +
+                     "            int d = random.nextInt(4);\n" +
+                     "            int x1 = aCells.get(aCells.size() - 1).x + dx[d];\n" +
+                     "            int y1 = aCells.get(aCells.size() - 1).y + dy[d];\n" +
+                     "            if(x1 >= 0 && x1 < 13 && y1 >= 0 && y1 < 14 && g[x1][y1] == 0) {\n" +
+                     "                for (int j = 0; j < 4; j ++){\n" +
+                     "                    int x2 = x1 + dx[j];\n" +
+                     "                    int y2 = y1 + dy[j];\n" +
+                     "                    if (x2 >= 0 && x2 < 13 && y2 >= 0 && y2 < 14 && g[x2][y2] == 0) {\n" +
+                     "                        for (int k = 0; k < 4; k ++){\n" +
+                     "                            int x3 = x2 + dx[k];\n" +
+                     "                            int y3 = y2 + dy[k];\n" +
+                     "                            if (x3 >= 0 && x3 < 13 && y3 >= 0 && y3 < 14 && g[x3][y3] == 0) {\n" +
+                     "                                return d;\n" +
+                     "                            }\n" +
+                     "                        }\n" +
+                     "                    }\n" +
+                     "                }\n" +
+                     "            }\n" +
+                     "        }\n" +
+                     "\n" +
+                     "\n" +
+                     "        return 0;\n" +
+                     "    }\n" +
+                     "\n" +
+                     "    @Override\n" +
+                     "    public Integer get() {\n" +
+                     "        File file = new File(\"input.txt\");\n" +
+                     "        try {\n" +
+                     "            Scanner scanner = new Scanner(file);\n" +
+                     "            return nextMove(scanner.next());\n" +
+                     "        } catch (FileNotFoundException e) {\n" +
+                     "            throw new RuntimeException(e);\n" +
+                     "        }\n" +
+                     "    }\n" +
+                     "}\n";
         }
 
         //  初始化两名玩家
@@ -234,13 +350,19 @@ public class Game extends Thread {
         sendBotCode(playerB);
 
         //  判断5次,每次等到1秒,最多等待5秒
-        for(int i = 0; i < 5; i ++ ) {
+        for(int i = 0; i < 50; i ++ ) {
             try {
-                Thread.sleep(500); //  等待0.5秒
+                Thread.sleep(100); //  等待0.1秒
                 lock.lock();
                 try {
+                    if (playerB.getId() < 0 && nextStepB == null) {
+
+                    }
                     if (nextStepA != null && nextStepB != null) {
                         //  两名玩家的下一步操作均读到了
+
+                        System.out.println("nextStepA: " + nextStepA);
+                        System.out.println("nextStepB: " + nextStepB);
                         playerA.getSteps().add(nextStepA);
                         playerB.getSteps().add(nextStepB);
                         return true;
@@ -264,6 +386,7 @@ public class Game extends Thread {
 
         //  最后一步撞墙
         if(g[cell.x][cell.y] == 1) {
+            System.out.println("撞墙");
             return false;
         }
 
@@ -271,12 +394,14 @@ public class Game extends Thread {
         //  自己撞自己
         for (int i = 0; i < n - 1; i++) {
             if (cellsA.get(i).x == cell.x && cellsA.get(i).y == cell.y) {
+                System.out.println("撞自己");
                 return false;
             }
         }
         //  自己撞对方
         for (int i = 0; i < n - 1; i++) {
             if (cellsB.get(i).x == cell.x && cellsB.get(i).y == cell.y) {
+                System.out.println("撞对方");
                 return false;
             }
         }
@@ -313,7 +438,7 @@ public class Game extends Thread {
         if (users.get(playerA.getId()) != null) {
             users.get(playerA.getId()).sendMessage(message);
         }
-        if (users.get(playerB.getId()) != null) {
+        if (playerB.getId() > 0 && users.get(playerB.getId()) != null) {
             users.get(playerB.getId()).sendMessage(message);
         }
     }
@@ -360,22 +485,34 @@ public class Game extends Thread {
     //  将结果存进数据库里
     private void saveToDatabase() {
         Integer ratingA = WebSocketServer.userMapper.selectById(playerA.getId()).getRating();
-        Integer ratingB = WebSocketServer.userMapper.selectById(playerB.getId()).getRating();
+
+        Integer ratingB = 1500;
+        if (playerB.getId() > 0) {
+            ratingB = WebSocketServer.userMapper.selectById(playerB.getId()).getRating();
+        }
+
 
         if ("A".equals(loser)) {
             ratingA -= 2;
-            ratingB += 5;
+            if (playerA.getId() > 0) {
+                ratingB += 5;
+            }
         } else if ("B".equals(loser)) {
-            ratingB -= 2;
+            if (playerB.getId() > 0) {
+                ratingB -= 2;
+            }
             ratingA += 5;
         } else {
             ratingA += 3;
-            ratingB += 3;
+            if (playerA.getId() > 0) {
+                ratingB += 3;
+            }
         }
 
         updateUserRating(playerA, ratingA);
-        updateUserRating(playerB, ratingB);
-
+        if (playerB.getId() > 0) {
+            updateUserRating(playerB, ratingB);
+        }
 
         Record record= new Record(
                 null,
@@ -393,7 +530,6 @@ public class Game extends Thread {
         );
 
         WebSocketServer.recordMapper.insert(record);
-
     }
 
     //  向两名玩家公布结果
@@ -410,6 +546,15 @@ public class Game extends Thread {
     public void run() {
         //  最多可以走600步
         for (int i = 0; i < 1000; i ++ ) {
+            // 第一回合要先等待前端加载的2秒钟，否则第一回合玩家只要3秒不输入就死了
+            if (i == 0) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
             if (nextStep()) {
                 //  是否获取到了两条蛇的下一步操作
                 judge();

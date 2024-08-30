@@ -12,7 +12,7 @@ public class ReceiveBotMoveSeriviceImpl implements ReceiveBotMoveService {
         System.out.println("receiveBotMove " + userId + " " + direction);
 
         //  把操作传向nextstep
-        if (WebSocketServer.users.get(userId) != null) {
+        if (userId > 0 && WebSocketServer.users.get(userId) != null) {
             Game game = WebSocketServer.users.get(userId).game;
 
             if (game != null) {
@@ -24,8 +24,13 @@ public class ReceiveBotMoveSeriviceImpl implements ReceiveBotMoveService {
                         game.setNextStepB(direction);
                 }
             }
+        } else {
+            // 是人机
+            System.out.println("receiveAIMove");
+            Game game = WebSocketServer.users.get(-userId).game;
+            game.setNextStepB(direction);
         }
-
+        System.out.println("receive bot move from " + userId + " to " + direction + " success");
         return "receive bot move from " + userId + " to " + direction + " success";
     }
 }

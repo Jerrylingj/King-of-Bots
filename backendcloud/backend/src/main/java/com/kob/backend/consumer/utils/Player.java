@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Player {
     private Integer id;
-    private Integer botId;  // -1表示自己亲自出马，否则表示用AI
+    private Integer botId;  // -1表示自己亲自出马，否则表示用AI, -2表示系统AI
     private String botCode;
     private Integer sx;
     private Integer sy;

@@ -43,13 +43,22 @@ public class GetRecordListServiceImpl implements GetRecordListService {
         List<JSONObject> items = new LinkedList<>();
         for (Record record : records) {
             User userA = userMapper.selectById(record.getAId());
-            User userB = userMapper.selectById(record.getBId());
+            User userB = null;
+            if (record.getBId() > 0 ){
+                userB = userMapper.selectById(record.getBId());
+            }
 
             JSONObject item = new JSONObject();
             item.put("a_photo",userA.getPhoto());
             item.put("a_username",userA.getUsername());
-            item.put("b_photo",userB.getPhoto());
-            item.put("b_username",userB.getUsername());
+            if (record.getBId() > 0){
+                item.put("b_photo",userB.getPhoto());
+                item.put("b_username",userB.getUsername());
+            } else {
+                item.put("b_photo","https://cdn.acwing.com/media/article/image/2022/07/07/1_d7f3b93efd-kob.png");
+                item.put("b_username","小蛇蛇");
+            }
+
             //  为方便直接在后端获取结果返回前端
             String result = "平局";
             if ("A".equals(record.getLoser())) {
