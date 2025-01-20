@@ -35,10 +35,12 @@ export default {
   },
 
   setup() {
-    const store = useStore();
-    const socketUrl = `wss://app7033.acapp.acwing.com.cn/websocket/${store.state.user.token}/`;
-    
     let socket = null;
+    const store = useStore();
+    const baseUrl = store.state.baseUrl;
+    const wssUrl = baseUrl.replace("http", "ws");
+    console.log("wssUrl:",wssUrl);
+    const socketUrl = `${wssUrl}/websocket/${store.state.user.token}/`;
   
     // 界面加载时
     onMounted(() => {

@@ -29,6 +29,7 @@
   import HomeField from '../../../components/HomeField.vue'
   import { ref } from 'vue'
   import router from '../../../router/index'
+  import {useStore} from 'vuex'
   import $ from 'jquery'
 
   export default {  
@@ -40,11 +41,14 @@
       let password = ref('');
       let confirmPassword = ref('');
       let error_message = ref('');
+      const store = useStore();
+      const baseUrl = store.state.baseUrl;
 
       const register = () => {
+        console.log("baseUrl：",baseUrl);
         $.ajax({
           // 连接到后端
-          url: "https://app7033.acapp.acwing.com.cn/api/user/account/register/",
+          url: `${baseUrl}/api/user/account/register/`,
           type: "post",
           data: {
             username: username.value,

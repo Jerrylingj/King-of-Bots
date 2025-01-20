@@ -43,6 +43,7 @@ import $ from 'jquery'
 export default {
   setup() {
     const store = useStore();
+    const baseUrl = store.state.baseUrl;
     let match_btn_info = ref("开始匹配");
     let bots = ref([])
     //  传回选择的机器人
@@ -68,7 +69,7 @@ export default {
     } 
     const refresh_bots = () => {
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/user/bot/getlist/",
+        url: `${baseUrl}/api/user/bot/getlist/`,
         type: "GET",
         headers: {
           Authorization: "Bearer " + store.state.user.token,

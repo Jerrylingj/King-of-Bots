@@ -47,6 +47,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const baseUrl = store.state.baseUrl;
     let users = ref([]);
     let current_page = 1;
     let total_users = 0;
@@ -81,7 +82,7 @@ export default {
     const pull_page = page => {
       current_page = page;  // 更新当前页码
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/ranklist/getlist/",
+        url: `${baseUrl}/api/ranklist/getlist/`,
         data: {
             page,
         },

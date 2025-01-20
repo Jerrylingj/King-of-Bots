@@ -61,6 +61,7 @@ export default {
   },
   setup() {
     const store = useStore();
+    const baseUrl = store.state.baseUrl;
     let records = ref([]);
     let current_page = 1;
     let total_records = 0;
@@ -95,7 +96,7 @@ export default {
     const pull_page = page => {
       current_page = page;  // 更新当前页码
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/record/getlist/",
+        url: `${baseUrl}/api/record/getlist/`,
         data: {
             page,
         },

@@ -40,8 +40,9 @@ export default {
     actions: {
         // 把前端输入post到后端，并从后端获取返回值
         login(context, data) {
+            const baseUrl = context.rootState.baseUrl; // 从 Vuex Store 中获取 baseUrl
             $.ajax({
-                url: "https://app7033.acapp.acwing.com.cn/api/user/account/token/",
+                url: `${baseUrl}/api/user/account/token/`,
                 type: "post",
                 data: {
                     username: data.username,
@@ -63,8 +64,9 @@ export default {
         },
         //      获取信息
         getinfo(context, data) {
+            const baseUrl = context.rootState.baseUrl; // 从 Vuex Store 中获取 baseUrl
             $.ajax({
-                url: "https://app7033.acapp.acwing.com.cn/api/user/account/info/",
+                url: `${baseUrl}/api/user/account/info/`,
                 type: "get",
                 headers: {
                     Authorization: "Bearer " + context.state.token,

@@ -32,7 +32,17 @@
                       <textarea v-model="botadd.description" class="form-control" id="description" rows="2" placeholder="请输入Bot备注"></textarea>
                     </div>
                     <div class="mb-3">
-                      <label for="content" class="form-label" style="font-size: 130%;">代码</label>
+
+
+                      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                        <div class="container-fluid">
+                          <a class="navbar-brand" href="#">代码</a>
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                        </div>
+                      </nav>
+                      
                       <VAceEditor
                       v-model:value="botadd.content"
                       @init="editorInit"
@@ -98,7 +108,7 @@
                             <div class="mb-3">
                               <label for="content" class="form-label" style="font-size: 130%;">代码</label>
                               <VAceEditor
-                                  v-model:value="bot.content"
+                                  v-model:value="botadd.content"
                                   @init="editorInit"
                                   lang="c_cpp"
                                   theme="dawn"
@@ -145,7 +155,7 @@ import { Modal } from 'bootstrap/dist/js/bootstrap'
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 import 'ace-builds/src-noconflict/mode-c_cpp';
-import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-dawn';
 import 'ace-builds/src-noconflict/ext-language_tools';
 
@@ -161,6 +171,7 @@ export default {
     "https://cdn.jsdelivr.net/npm/ace-builds@" + require('ace-builds').version + "/src-noconflict/")
 
     const store = useStore();
+    const baseUrl = store.state.baseUrl;
     let bots = ref([]);
 
     const botadd = reactive({
@@ -179,7 +190,7 @@ export default {
 
     const refresh_bots = () => {
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/user/bot/getlist/",
+        url: `${baseUrl}/api/user/bot/getlist/`,
         type: "GET",
         headers: {
           Authorization: "Bearer " + store.state.user.token,
@@ -195,7 +206,7 @@ export default {
     const add_bot = () => {
       botadd.error_message = "";
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/user/bot/add/",
+        url: `${baseUrl}/api/user/bot/add/`,
         type: "POST",
         data: {
           // reactive后面不用加.value,ref后面才要加.value
@@ -226,7 +237,7 @@ export default {
     const remove_bot = (bot) => {
 
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/user/bot/remove/",
+        url: `${baseUrl}/api/user/bot/remove/`,
         type: "POST",
         data: {
           // reactive后面不用加.value,ref后面才要加.value
@@ -248,7 +259,7 @@ export default {
     const update_bot = (bot) => {
       botupdate.error_message = "";
       $.ajax({
-        url: "https://app7033.acapp.acwing.com.cn/api/user/bot/update/",
+        url: `${baseUrl}/api/user/bot/update/`,
         type: "POST",
         data: {
           // reactive后面不用加.value,ref后面才要加.value
