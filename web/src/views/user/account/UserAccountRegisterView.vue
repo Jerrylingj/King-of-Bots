@@ -134,6 +134,15 @@
 	}
 }
 
+@media (max-width: 932px) {
+  #box {
+    padding: 25px 30px 25px 30px;
+  }
 
-  </style>
+  * {
+    font-size: 0.7rem;
+  }
+}
+
+</style>
   

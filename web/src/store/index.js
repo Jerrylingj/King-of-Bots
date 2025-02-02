@@ -5,7 +5,7 @@ import ModuleRecord from './record'
 
 export default createStore({
   state: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://app7033.acapp.acwing.com.cn",
   },
   getters: {
     getBaseUrl: (state) => state.baseUrl, // 提供一个 getter 方便获取 baseUrl

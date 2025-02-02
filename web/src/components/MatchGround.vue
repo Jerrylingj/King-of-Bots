@@ -136,4 +136,20 @@ div.user-select-bot > select {
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .user-photo img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .user-username {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    width: 200px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
+}
 </style>
