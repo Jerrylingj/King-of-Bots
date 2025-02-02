@@ -25,6 +25,9 @@
     div.container{
       margin-top: 8vh;
     }
+    div.card {
+      width: 100vw;
+    }
   }
   
   </style>

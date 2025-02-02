@@ -254,9 +254,23 @@ public class Bot implements java.util.function.Supplier<Integer> {
   }
 
   div.content-field{
-      margin-top: 2vh;
+      margin-top: 6vh;
       width: 65vw;
       height: 60vh;
+  }
+
+  @media (max-width: 932px) {
+    div.content-field{
+      width: 90vw;
+    }
+
+    div.card {
+      max-width: 90vw;
+    }
+
+    * {
+      font-size: 0.9rem;
+    }
   }
 
 </style>

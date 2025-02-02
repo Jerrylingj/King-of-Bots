@@ -26,7 +26,7 @@
                 </li>
                 <li>当双方同时在一回合内失败，对局结果为平局</li>
               </ul>
-      s     </div>
+           </div>
             <div class="card1 guidence">
               <h3>指引</h3>
               ps:由于制作的非常简陋，当前版本可能还存在许多bug，蹲蹲后续的反馈，后面可能会进行更新维护
@@ -147,10 +147,24 @@
       height: 60vh;
   }
 
-  .card {
+  div.card {
     background-color: transparent;
     border: none;
 
+  }
+
+  @media (max-width: 932px) {
+    div.content-field{
+      width: 90vw;
+    }
+
+    div.card1 {
+      max-width: 90vw;
+    }
+
+    * {
+      font-size: 0.9rem;
+    }
   }
 
   </style>
