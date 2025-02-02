@@ -1,6 +1,5 @@
 <template>
     <div class="playground">
-        <br><br><br><br>
         <GameMap></GameMap>
     </div>
 </template>
@@ -22,7 +21,6 @@ export default {
 div.playground{
     width: 60vw;
     height: 70vh;
-
     margin: 3vh auto;
 }
 

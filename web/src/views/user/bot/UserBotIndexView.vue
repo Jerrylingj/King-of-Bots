@@ -300,4 +300,9 @@ export default {
 div.error-message {
   color: red;
 }
+@media (max-width: 932px) {
+  * {
+    font-size: 0.8rem;
+  }
+}
 </style>

@@ -159,5 +159,10 @@ button.btn {
   animation: flowCss 3s infinite linear;
 }
 
+@media (max-width: 932px) {
+    * {
+      font-size: 0.6rem;
+    }
+  }
 
 </style>

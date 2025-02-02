@@ -151,4 +151,17 @@ div.color-blue {
   border-radius: 50%;
   position: absolute;
 }
+@media (max-width: 932px) {
+  * {
+    font-size: 0.58rem;
+  }
+  div.color-red {
+    margin-left: 18vh;
+
+  }
+  div.color-blue {
+    margin-left: 18vh;
+
+  }
+}
 </style>

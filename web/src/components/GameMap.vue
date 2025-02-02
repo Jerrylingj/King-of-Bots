@@ -35,6 +35,7 @@ export default {
 
 <style scoped>
 div.gamemap{
+    margin-top: 10vh;
     width: 100%;
     height: 100%;
     display: flex;

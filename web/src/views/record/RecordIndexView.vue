@@ -203,4 +203,9 @@ span.record-user-username {
   font: italic 1.5em Georgia, serif;
 }
 
+@media (max-width: 932px) {
+  * {
+    font-size: 0.6rem;
+  }
+}
 </style>
