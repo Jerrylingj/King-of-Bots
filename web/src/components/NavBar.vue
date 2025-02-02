@@ -112,8 +112,8 @@ export default {
 
 <style scoped>
 .navbar-icon {
-  width: 40px;
-  height: 40px;
+  width: 2vw;
+  height: 2vw;
   margin-left: 100px;
   background-image: url("../assets/images/icon.png");
   background-size: 100% 100%;
@@ -153,8 +153,8 @@ export default {
 }
 
 img.icons {
-  height: 20px;
-  width: 20px;
+  width: 1vw;
+  height: 1vw;
 }
 
 .navbar {
@@ -166,16 +166,16 @@ img.icons {
   max-width: 100%;
 }
 
-@media screen and (orientation: landscape) and (max-width: 1000px) {
-  .navbar-nav .nav-link {
-    font-size: 0.85rem;
+@media (max-width: 932px) {
+  .navbar {
+    height: 2rem;
   }
-  .navbar-brand.title {
-    font-size: 1.2em;
+  .nav-link {
+    height: 24px;
   }
-  img.icons {
-    height: 16px;
-    width: 16px;
+  * {
+    font-size: 0.6rem;
   }
 }
+
 </style>

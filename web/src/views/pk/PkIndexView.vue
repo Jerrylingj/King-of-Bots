@@ -15,6 +15,23 @@
     <div class="color-red" v-if="parseInt($store.state.user.id) === parseInt($store.state.pk.b_id)"></div>
     <div class="color-blue" v-if="parseInt($store.state.user.id) === parseInt($store.state.pk.a_id)"></div>
   </div>
+  <!-- 添加移动端控制按钮 -->
+  <div v-if="showMobileControls && $store.state.pk.status === 'playing'" class="mobile-controls">
+    <div class="control-grid">
+      <button class="control-btn up" @touchstart.prevent="sendDirection(0)">
+        <i class="arrow">↑</i>
+      </button>
+      <button class="control-btn left" @touchstart.prevent="sendDirection(3)">
+        <i class="arrow">←</i>
+      </button>
+      <button class="control-btn down" @touchstart.prevent="sendDirection(2)">
+        <i class="arrow">↓</i>
+      </button>
+      <button class="control-btn right" @touchstart.prevent="sendDirection(1)">
+        <i class="arrow">→</i>
+      </button>
+    </div>
+  </div>
   <!-- <div class="user-color">
     右上角
     </div> -->
@@ -27,6 +44,8 @@ import MatchGround from '../../components/MatchGround.vue';
 import ResultBoard from '../../components/ResultBoard.vue'
 import { onMounted, onUnmounted} from 'vue'
 import { useStore } from 'vuex'
+import { computed } from 'vue';
+
 export default {  
   components: {
     PlayGround,
@@ -42,6 +61,19 @@ export default {
     console.log("wssUrl:",wssUrl);
     const socketUrl = `${wssUrl}/websocket/${store.state.user.token}/`;
   
+    const showMobileControls = computed(() => {
+      return window.innerWidth <= 932 && !store.state.record.is_record;
+    });
+    
+    const sendDirection = (direction) => {
+      if (store.state.pk.status === 'playing') {
+        store.state.pk.socket.send(JSON.stringify({
+          event: "move",
+          direction: direction,
+        }));
+      }
+    };
+
     // 界面加载时
     onMounted(() => {
       store.commit("updateOpponent", {
@@ -113,6 +145,10 @@ export default {
       store.commit("updateIsRecord", false);
     })
 
+    return {
+      sendDirection,
+      showMobileControls
+    }
 
   }
 };  
@@ -143,6 +179,7 @@ div.color-red {
   border-radius: 50%;
   position: absolute;
 }
+
 div.color-blue {
   margin-left: 15vh;
   background-color: #4876EC;
@@ -151,17 +188,72 @@ div.color-blue {
   border-radius: 50%;
   position: absolute;
 }
+
+/* 移动端控制样式 */
+.mobile-controls {
+  position: fixed;
+  bottom: 5%;
+  left: 90%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  touch-action: manipulation;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-areas: 
+    ". up ."
+    "left down right";
+  gap: 8px;
+  place-items: center;
+}
+
+.up { grid-area: up; }
+.left { grid-area: left; }
+.down { grid-area: down; }
+.right { grid-area: right; }
+
+.control-btn {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.control-btn:active {
+  background: rgba(200, 200, 200, 0.9);
+  transform: scale(0.92);
+}
+
+.arrow {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+
+
 @media (max-width: 932px) {
-  * {
-    font-size: 0.58rem;
+  div.user-color {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.6rem;
   }
-  div.color-red {
-    margin-left: 18vh;
-
+  
+  div.text {
+    font-size: 1rem;
   }
-  div.color-blue {
-    margin-left: 18vh;
-
+  
+  div.color-red, div.color-blue {
+    width: 2rem;
+    height: 2rem;
   }
 }
+
 </style>
