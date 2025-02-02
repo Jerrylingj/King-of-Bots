@@ -98,12 +98,13 @@ div.matchground {
   width: 60vw;
   height: 70vh;
   margin: 40px auto;
+  padding: 20px;
   background-color: rgba(50,50,50,0.5);
 }
 
 div.user-photo {
   text-align: center;
-  margin-top: 140px;
+  margin-top: 15vh;
   margin-bottom: 20px;
 }
 
@@ -115,7 +116,7 @@ div.user-photo > img {
 
 div.user-username {
   text-align: center;
-  font-size: 24px;
+  font-size: 2em;
   font-weight: 550;
   color:white;
 }
@@ -136,20 +137,22 @@ div.user-select-bot > select {
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-  .user-photo img {
-    width: 200px;
-    height: 200px;
+@media (max-width: 932px) {
+  div.user-photo > img {
+    width: 11vw;
+    height: 11vw;
+  }
+  button.btn {
+    margin: 10px;
+    width: 12vw;
+    height: 7vh;
+  }
+  div.user-username {
+    font-size: 2em;
   }
 
-  .user-username {
-    font-size: 1.5rem;
-  }
-
-  .btn {
-    width: 200px;
-    height: 50px;
-    font-size: 1.1rem;
+  * {
+    font-size: 0.7rem;
   }
 }
 </style>
