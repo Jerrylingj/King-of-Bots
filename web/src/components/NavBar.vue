@@ -8,31 +8,31 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" v-if="$store.state.user.is_login">
             <router-link :class="route_name == 'pk_index' ? 'nav-link active' : 'nav-link'" :to="{name: 'pk_index'}">
-              <img src="https://img.icons8.com/?size=100&id=59335&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=yOrOkAN9XhDW&format=png&color=000000" class="icons">
               对战
             </router-link>
           </li>
           <li class="nav-item" v-if="$store.state.user.is_login">
             <router-link :class="route_name == 'record_index' ? 'nav-link active' : 'nav-link'" :to="{name: 'record_index'}">
-              <img src="https://img.icons8.com/?size=100&id=5T76ABfXaynZ&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=R2FM5ROUGp7B&format=png&color=000000" class="icons">
               对局列表
             </router-link>
           </li>
           <li class="nav-item" v-if="$store.state.user.is_login">
             <router-link :class="route_name == 'ranklist_index' ? 'nav-link active' : 'nav-link'" :to="{name: 'ranklist_index'}">
-              <img src="https://img.icons8.com/?size=100&id=0IIlCLa2f618&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=zZ5b6zKe0H8l&format=png&color=000000" class="icons">
               排行榜
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :class="route_name == 'rule_index' ? 'nav-link active' : 'nav-link'" :to="{name: 'rule_index'}">
-              <img src="https://img.icons8.com/?size=100&id=CsbD6WKBWxtf&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=oQjhDr71haP1&format=png&color=000000" class="icons">
               游戏规则
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :class="route_name == 'example_index' ? 'nav-link active' : 'nav-link'" :to="{name: 'example_index'}">
-              <img src="https://img.icons8.com/?size=100&id=14086&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=CSzrvtlqxYnE&format=png&color=000000" class="icons">
               样例代码
             </router-link>
           </li>
@@ -41,19 +41,19 @@
         <ul class="navbar-nav" v-if="$store.state.user.is_login">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://img.icons8.com/?size=100&id=2oRq7VXjDba7&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=4V1nG4SioGjp&format=png&color=000000" class="icons">
               {{ $store.state.user.username }}
             </a>
             <ul class="dropdown-menu">
               <li>
                 <router-link class="dropdown-item" :to="{name: 'user_bot_index'}">
-                  <img src="https://img.icons8.com/?size=100&id=NpWB6GLVTcND&format=png&color=000000" class="icons">
+                  <img src="https://img.icons8.com/?size=100&id=XNotH4e8lEuO&format=png&color=000000" class="icons">
                   我的Bot
                 </router-link>
               </li>
               <li>
                 <a class="dropdown-item" href="#" @click="logout">
-                  <img src="https://img.icons8.com/?size=100&id=Q1xkcFuVON39&format=png&color=000000" class="icons">
+                  <img src="https://img.icons8.com/?size=100&id=42byuSCZTK8Q&format=png&color=000000" class="icons">
                   退出
                 </a>
               </li>
@@ -64,13 +64,13 @@
         <ul class="navbar-nav" v-else>
           <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'user_account_login'}" role="button">
-              <img src="https://img.icons8.com/?size=100&id=DXc6Ki803SDo&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=ZksQ17CxR66o&format=png&color=000000" class="icons">
               登录
             </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'user_account_register'}" role="button">
-              <img src="https://img.icons8.com/?size=100&id=T594YO5M5wL5&format=png&color=000000" class="icons">
+              <img src="https://img.icons8.com/?size=100&id=oaVmuvfbtK2x&format=png&color=000000" class="icons">
               注册
             </router-link>
           </li>
@@ -153,8 +153,8 @@ export default {
 }
 
 img.icons {
-  width: 1vw;
-  height: 1vw;
+  width: 1.5vw;
+  height: 1.5vw;
 }
 
 .navbar {
