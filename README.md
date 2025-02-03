@@ -40,8 +40,21 @@
 
 
 ## 🖼 界面预览
-| 游戏规则 | 样例代码 | 对战界面 | 对局记录 |
-|:---------:|:-------:|:---------:|:---------:|
-| ![游戏规则](static/img/cover-4.png) | ![样例代码](./static/img/cover-5.png) | ![对战界面](./static/img/cover-1.png) | ![对局记录](static/img/cover-2.png) |
-| **排行榜** | **个人中心** | **胜利** | **失败** |
-| ![排行榜](static/img/cover-3.png) | ![个人中心](./static/img/cover-6.png) | ![对局胜利](./static/img/cover-7.png) | ![对局失败](./static/img/cover-8.png) |
+
+<div align="center">
+  <img src="./static/img/cover-4.png" alt="Screenshot 1" width="45%"/>
+  <img src="./static/img/cover-5.png" alt="Screenshot 2" width="45%"/>
+</div>
+
+<div align="center">
+  <img src="./static/img/cover-1.png" alt="Screenshot 3" width="45%"/>
+  <img src="./static/img/cover-2.png" alt="Screenshot 4" width="45%"/>
+</div>
+<div align="center">
+  <img src="./static/img/cover-3.png" alt="Screenshot 5" width="45%"/>
+  <img src="./static/img/cover-6.png" alt="Screenshot 6" width="45%"/>
+</div>
+<div align="center">
+  <img src="./static/img/cover-7.png" alt="Screenshot 7" width="45%"/>
+  <img src="./static/img/cover-8.png" alt="Screenshot 8" width="45%"/>
+</div>
