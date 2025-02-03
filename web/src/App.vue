@@ -46,9 +46,19 @@ export default {
 
 <style>
 body {
-  background-image: url("assets/images/Background1.jpg");
-  background-attachment: fixed;
-  background-size: cover;
+  background-image: url("assets/images/Background1.jpg"); /* 使用 WebP 格式 */
+  background-size: cover; /* 覆盖整个页面 */
+  background-position: center; /* 图片居中 */
+  background-repeat: no-repeat; /* 防止重复 */
+  background-attachment: fixed; /* 固定背景图 */
+  background-color: #f0f0f0; /* 加载时的占位背景色 */
+}
+
+/* 移动端优化 */
+@media (max-width: 932px) {
+  body {
+    background-attachment: scroll; /* 取消固定 */
+  }
 }
 
 #app-container {

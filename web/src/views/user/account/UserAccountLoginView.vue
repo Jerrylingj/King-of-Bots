@@ -51,26 +51,25 @@ export default {
     } else {
       show_content.value = true;
     }
-
     const login = () => {
       store.dispatch("login", { 
-        username: username.value, 
-        password: password.value,
+      username: username.value, 
+      password: password.value,
+      success() {
+        alert("登录成功！");
+        store.dispatch("getinfo",{
         success() {
-          alert("登录成功！");
-          store.dispatch("getinfo",{
-            success() {
-              setTimeout(() => {
-                router.push({name: "home"});
-              }, 500);
-            }
-          })
-        },
-        error() {
-          error_message.value = "用户名或密码错误";
+          setTimeout(() => {
+          router.push({name: "home"});
+          }, 500);
         }
-      })
-    }
+        });
+      },
+      error() {
+        error_message.value = "用户名或密码错误";
+      }
+      });
+    };
 
     return {
       username,

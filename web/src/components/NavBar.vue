@@ -166,6 +166,10 @@ img.icons {
   max-width: 100%;
 }
 
+* {
+  font-weight: bold;
+}
+
 @media (max-width: 932px) {
   .navbar {
     height: 2rem;

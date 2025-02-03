@@ -138,6 +138,17 @@ div.user-select-bot > select {
 }
 
 @media (max-width: 932px) {
+  div.matchground {
+    height: 65vh;
+  }
+  
+  div.user-select-bot {
+    padding-top: 10vh;
+  }
+  div.user-photo {
+    margin-top: 5vh;
+  }
+
   div.user-photo > img {
     width: 11vw;
     height: 11vw;
